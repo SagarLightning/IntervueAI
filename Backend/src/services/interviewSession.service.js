@@ -13,22 +13,30 @@ const ai = new GoogleGenAI({
 });
 
 // Retry wrapper for transient network errors (ECONNRESET, fetch failed)
-async function withRetry(fn, retries = 3, delayMs = 1500) {
+async function withRetry(fn, retries = 4, delayMs = 2000) {
   for (let attempt = 1; attempt <= retries; attempt++) {
     try {
       return await fn();
     } catch (err) {
-      const isNetworkError = err?.cause?.code === "ECONNRESET" || err?.message?.includes("fetch failed");
-      if (isNetworkError && attempt < retries) {
-        console.warn(`[AI] Network error on attempt ${attempt}/${retries}, retrying in ${delayMs * attempt}ms...`);
-        await new Promise(r => setTimeout(r, delayMs * attempt));
+      const isRetryable =
+        err?.cause?.code === "ECONNRESET" ||
+        err?.message?.includes("fetch failed") ||
+        err?.status === 503 ||
+        err?.status === 429;
+
+      if (isRetryable && attempt < retries) {
+        const waitTime = delayMs * attempt;
+        console.warn(
+          `[AI] Retryable error on attempt ${attempt}/${retries}. Retrying in ${waitTime}ms...`
+        );
+        await new Promise((resolve) => setTimeout(resolve, waitTime));
       } else {
         throw err;
       }
     }
   }
 }
-const MODEL_NAME = "gemini-2.5-flash";
+const MODEL_NAME = "gemini-3.5-flash";
 
 // ─── 1. Generate opening questions for a round ────────────────────────────────
 async function generateQuestions({ report, round, difficulty, company, role }) {

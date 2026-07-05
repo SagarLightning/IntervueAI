@@ -5,7 +5,7 @@ const interviewSessionRoutes = require("./routes/interviewSession.routes.js");
 
 const app = express();
 
-app.use(express.json());
+app.use(express.json({ type: 'application/json' }));
 app.use(cookieParser());
 app.use(cors({
     origin: 'http://localhost:5173',

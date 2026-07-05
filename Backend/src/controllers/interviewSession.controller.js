@@ -210,8 +210,8 @@ async function nextRound(req, res) {
         res.json({
             round: nextRoundName,
             roundScore,
-            questions: questions.map((q) => ({
-                index: q.index,
+            questions: questions.map((q, index) => ({
+                index,
                 question: q.question,
             })),
         });
