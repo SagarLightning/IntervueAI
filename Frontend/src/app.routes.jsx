@@ -7,6 +7,7 @@ import Home from './features/interview/pages/Home';
 import Interview from "./features/interview/pages/Interview";
 import SessionStart from "./features/interviewSession/pages/SessionStart";
 import InterviewRoom from "./features/interviewSession/pages/InterviewRoom";
+import SessionResult from "./features/interviewSession/pages/SessionResult";
 
 
 
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
             {
                 path: 'interview-session/:sessionId',
                 element: <Protected><InterviewRoom /></Protected>
+            },
+            {
+                path: "interview-session/:sessionId/result",
+                element: <Protected><SessionResult /></Protected>
             }
         ]
     }
