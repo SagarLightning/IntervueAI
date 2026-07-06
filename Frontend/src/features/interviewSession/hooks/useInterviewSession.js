@@ -9,18 +9,21 @@ import {
 
 export function useInterviewSession() {
   const [session, setSession] = useState(null);
+  const [sessions, setSessions] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
 
-  async function execute(fn, fallbackMessage) {
+  async function execute(callback, fallbackMessage) {
     setLoading(true);
-    setError(null);
+    setError("");
 
     try {
-      return await fn();
+      return await callback();
     } catch (err) {
       const message =
-        err.response?.data?.message || err.message || fallbackMessage;
+        err.response?.data?.message ||
+        err.message ||
+        fallbackMessage;
 
       setError(message);
       throw err;
@@ -32,7 +35,8 @@ export function useInterviewSession() {
   async function startSession(payload) {
     return execute(async () => {
       const data = await startInterviewSession(payload);
-      setSession(data);
+
+      // backend returns only sessionId
       return data;
     }, "Failed to start session");
   }
@@ -40,49 +44,44 @@ export function useInterviewSession() {
   async function fetchSession(sessionId) {
     return execute(async () => {
       const data = await getInterviewSession(sessionId);
+
       setSession(data);
+
       return data;
     }, "Failed to fetch session");
   }
 
-  async function submitAnswer(payload) {
+  async function submitAnswer(sessionId, payload) {
     return execute(async () => {
-      const data = await submitInterviewAnswer(payload);
-
-      if (data.session) {
-        setSession(data.session);
-      }
-
-      return data;
+      return await submitInterviewAnswer(sessionId, payload);
     }, "Failed to submit answer");
   }
 
   async function nextRound(sessionId) {
     return execute(async () => {
-      const data = await moveToNextRound(sessionId);
-
-      if (data.session) {
-        setSession(data.session);
-      }
-
-      return data;
+      return await moveToNextRound(sessionId);
     }, "Failed to advance round");
   }
 
   async function finishSession(sessionId) {
     return execute(async () => {
-      const data = await finishInterviewSession(sessionId);
+      return await finishInterviewSession(sessionId);
+    }, "Failed to finish session");
+  }
 
-      if (data.session) {
-        setSession(data.session);
-      }
+  async function fetchSessions() {
+    return execute(async () => {
+      const data = await getInterviewSession();
+
+      setSessions(data);
 
       return data;
-    }, "Failed to finish session");
+    }, "Failed to fetch sessions");
   }
 
   return {
     session,
+    sessions,
     loading,
     error,
 
@@ -91,7 +90,6 @@ export function useInterviewSession() {
     submitAnswer,
     nextRound,
     finishSession,
-
-    setSession,
+    fetchSessions,
   };
 }

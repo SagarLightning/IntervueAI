@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { useInterviewSession } from "../hooks/useInterviewSession";
 import { useInterview } from "../../interview/hooks/useInterview";
-import styles from "../styles/SessionStart.module.scss";
+import styles from "../style/SessionStart.module.scss";
 
 const DIFFICULTIES = ["easy", "medium", "hard"];
 const INTERVIEW_TYPES = ["full", "resume", "technical", "coding", "behavioral"];
