@@ -12,87 +12,86 @@ export function useInterviewSession() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  async function startSession(payload) {
+  async function execute(fn, fallbackMessage) {
     setLoading(true);
     setError(null);
+
     try {
+      return await fn();
+    } catch (err) {
+      const message =
+        err.response?.data?.message || err.message || fallbackMessage;
+
+      setError(message);
+      throw err;
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  async function startSession(payload) {
+    return execute(async () => {
       const data = await startInterviewSession(payload);
       setSession(data);
       return data;
-    } catch (err) {
-      setError(err.response?.data?.message || "Failed to start session");
-    } finally {
-      setLoading(false);
-    }
+    }, "Failed to start session");
   }
 
   async function fetchSession(sessionId) {
-    setLoading(true);
-    setError(null);
-    try {
+    return execute(async () => {
       const data = await getInterviewSession(sessionId);
       setSession(data);
       return data;
-    } catch (err) {
-      setError(err.response?.data?.message || "Failed to fetch session");
-    } finally {
-      setLoading(false);
-    }
+    }, "Failed to fetch session");
   }
 
   async function submitAnswer(payload) {
-    setLoading(true);
-    setError(null);
-    try {
+    return execute(async () => {
       const data = await submitInterviewAnswer(payload);
+
+      if (data.session) {
+        setSession(data.session);
+      }
+
       return data;
-    } catch (err) {
-      setError(err.response?.data?.message || "Failed to submit answer");
-    } finally {
-      setLoading(false);
-    }
+    }, "Failed to submit answer");
   }
 
   async function nextRound(sessionId) {
-    setLoading(true);
-    setError(null);
-    try {
+    return execute(async () => {
       const data = await moveToNextRound(sessionId);
-      setSession((prev) => ({
-        ...prev,
-        currentRound: data.round,
-        currentQuestionIndex: 0,
-        currentQuestion: data.questions?.[0]?.question || "",
-      }));
+
+      if (data.session) {
+        setSession(data.session);
+      }
+
       return data;
-    } catch (err) {
-      setError(err.response?.data?.message || "Failed to advance round");
-    } finally {
-      setLoading(false);
-    }
+    }, "Failed to advance round");
   }
 
   async function finishSession(sessionId) {
-    setLoading(true);
-    setError(null);
-    try {
+    return execute(async () => {
       const data = await finishInterviewSession(sessionId);
+
+      if (data.session) {
+        setSession(data.session);
+      }
+
       return data;
-    } catch (err) {
-      setError(err.response?.data?.message || "Failed to finish session");
-    } finally {
-      setLoading(false);
-    }
+    }, "Failed to finish session");
   }
 
   return {
     session,
     loading,
     error,
+
     startSession,
     fetchSession,
     submitAnswer,
     nextRound,
     finishSession,
+
+    setSession,
   };
 }
