@@ -13,13 +13,12 @@ const ai = new GoogleGenAI({
 });
 const FALLBACK_MODELS = [
     process.env.AI_MODEL,
-    "gemini-3.5-flash",
-    "gemini-3.5-flash-001",
-    "gemini-3.5-flash-lite",
-    "gemini-3.5-flash",
+    "gemini-2.5-flash",
+    "gemini-2.0-flash",
+    "gemini-1.5-flash",
 ].filter((m, idx, arr) => m && arr.indexOf(m) === idx);
 
-const MODEL_NAME = process.env.AI_MODEL || "gemini-3.5-flash";
+const MODEL_NAME = process.env.AI_MODEL || "gemini-2.5-flash";
 
 // Retry wrapper for transient network errors, rate limits (429), and missing models (404)
 async function withRetry(fn, retries = 5, delayMs = 1500, models = FALLBACK_MODELS) {
