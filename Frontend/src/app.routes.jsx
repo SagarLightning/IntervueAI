@@ -2,7 +2,7 @@ import { createBrowserRouter, Navigate } from 'react-router';
 import Register from './features/auth/pages/register';
 import Login from './features/auth/pages/login';
 import ErrorPage from './components/ErrorPage';
-import Protected from './features/auth/components/protected';
+import Protected from "./features/auth/components/Protected.jsx";
 import Home from './features/interview/pages/Home';
 import Interview from "./features/interview/pages/Interview";
 import SessionStart from "./features/interviewSession/pages/SessionStart";
