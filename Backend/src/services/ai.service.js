@@ -232,9 +232,10 @@ async function generateResumePDF({ resume, selfDescription, jobDescription }) {
 
     const jsonContent = JSON.parse(response.text)
 
-    const pdfBuffer = await generatePdfFromHtml(jsonContent.html)
-
-    return pdfBuffer
+    // Bypass Puppeteer on Render due to missing OS dependencies for Chromium
+    // Instead of generating a PDF on the server, we return the raw HTML 
+    // and let the client download it as an HTML file.
+    return jsonContent.html
 }
 
 module.exports = { generateInterviewReport, generateResumePDF };
