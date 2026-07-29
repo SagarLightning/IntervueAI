@@ -73,6 +73,18 @@ export const useInterview = () => {
         }
         catch (error) {
             console.log(error)
+            if (error.response?.data instanceof Blob) {
+                error.response.data.text().then(text => {
+                    try {
+                        const errData = JSON.parse(text);
+                        alert(errData.message || "Failed to download PDF.");
+                    } catch(e) {
+                        alert("Failed to download PDF. Please check backend logs.");
+                    }
+                });
+            } else {
+                alert(error.response?.data?.message || "Failed to download PDF.");
+            }
         } finally {
             setLoading(false)
         }
