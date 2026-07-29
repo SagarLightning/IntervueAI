@@ -197,9 +197,16 @@ async function generatePdfFromHtml(htmlContent) {
 }
 
 async function generateResumePDF({ resume, selfDescription, jobDescription }) {
-    const resumePdfSchema = z.object({
-        html: z.string().describe("The HTML content of the resume which can be converted to PDF using any library like puppeteer")
-    })
+    const resumePdfSchema = {
+        type: Type.OBJECT,
+        properties: {
+            html: {
+                type: Type.STRING,
+                description: "The HTML content of the resume which can be converted to PDF using any library like puppeteer"
+            }
+        },
+        required: ["html"]
+    };
     const prompt = `Generate resume for a candidate with the following details:
                         Resume: ${resume}
                         Self Description: ${selfDescription}
@@ -218,7 +225,7 @@ async function generateResumePDF({ resume, selfDescription, jobDescription }) {
         contents: prompt,
         config: {
             responseMimeType: "application/json",
-            responseSchema: zodToJsonSchema(resumePdfSchema),
+            responseSchema: resumePdfSchema,
         }
     }));
 
