@@ -56,6 +56,27 @@
     background: #3d3d3d;
 }
 
+.endInterviewBtn {
+    margin-left: auto;
+    background: transparent;
+    color: #ff5252;
+    border: 1px solid #ff525240;
+    border-radius: 6px;
+    padding: 0.35rem 0.8rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+
+    &:hover {
+        background: #ff525215;
+        border-color: #ff5252;
+    }
+}
+
 // ── Main ─────────────────────────────────────────────
 .main {
     flex: 1;

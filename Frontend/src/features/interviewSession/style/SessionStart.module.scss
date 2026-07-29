@@ -25,6 +25,34 @@
   gap: 0.4rem;
 }
 
+.headerTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.closeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: transparent;
+  border: 1px solid #2a2a2a;
+  border-radius: 8px;
+  color: #777;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+
+  &:hover {
+    background: rgba(#ff4444, 0.15);
+    border-color: #ff4444;
+    color: #ff4444;
+  }
+}
+
 .title {
   font-size: 1.6rem;
   font-weight: 700;

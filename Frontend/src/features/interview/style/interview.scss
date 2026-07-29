@@ -109,6 +109,63 @@ $severity-low: #3fb950;
         align-items: center;
         flex-shrink: 0;
     }
+
+    &__actions {
+        display: flex;
+        flex-direction: column;
+        gap: 0.65rem;
+        width: 100%;
+        padding-top: 1.25rem;
+        border-top: 1px solid rgba($border-color, 0.6);
+    }
+
+    &__btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
+        padding: 0.75rem 1rem;
+        border-radius: 0.6rem;
+        font-family: $font-stack;
+        font-size: 0.85rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        border: none;
+        outline: none;
+        text-decoration: none;
+
+        &--secondary {
+            background-color: $bg-panel;
+            color: $text-primary;
+            border: 1px solid $border-color;
+
+            svg {
+                color: $accent;
+                flex-shrink: 0;
+            }
+
+            &:hover {
+                background-color: color.adjust($bg-panel, $lightness: 4%);
+                border-color: $accent;
+                color: #ffffff;
+                transform: translateY(-1px);
+            }
+        }
+
+        &--primary {
+            background: linear-gradient(135deg, #6c63ff, #5a52e0);
+            color: #ffffff;
+            box-shadow: 0 4px 12px rgba(108, 99, 255, 0.25);
+
+            &:hover {
+                background: linear-gradient(135deg, #7b73ff, #6c63ff);
+                transform: translateY(-1px);
+                box-shadow: 0 6px 16px rgba(108, 99, 255, 0.35);
+            }
+        }
+    }
 }
 
 // ── Center Content ────────────────────────────────────────────────────────────

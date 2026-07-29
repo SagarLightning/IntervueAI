@@ -1,0 +1,185 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+// ── Toolbar ───────────────────────────────────────────
+
+.toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0.75rem;
+    border-bottom: 1px solid #1e1e1e;
+    background: #111;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.langSelector {
+    display: flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+}
+
+.langBtn {
+    padding: 0.25rem 0.65rem;
+    border-radius: 5px;
+    border: 1px solid #2a2a2a;
+    background: #111;
+    color: #666;
+    font-size: 0.72rem;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover:not(:disabled) { border-color: #444; color: #aaa; }
+    &:disabled { opacity: 0.4; cursor: not-allowed; }
+}
+
+.langBtnActive {
+    background: #2ecc7115;
+    border-color: #2ecc71;
+    color: #2ecc71;
+}
+
+.toolbarActions {
+    display: flex;
+    gap: 0.35rem;
+}
+
+.toolBtn {
+    padding: 0.25rem 0.6rem;
+    border-radius: 5px;
+    border: 1px solid #2a2a2a;
+    background: #111;
+    color: #555;
+    font-size: 0.72rem;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover:not(:disabled) { border-color: #444; color: #aaa; }
+    &:disabled { opacity: 0.4; cursor: not-allowed; }
+}
+
+// ── Editor ────────────────────────────────────────────
+
+.editorWrapper {
+    flex: 1;
+    overflow-y: auto;
+    background: #0d0d0d;
+    position: relative;
+
+    & > div { min-height: 100%; }
+    & textarea, & pre { min-height: calc(100vh - 240px) !important; }
+}
+
+.editorDisabled {
+    pointer-events: none;
+}
+
+.disabledOverlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+// ── Stdin ─────────────────────────────────────────────
+
+.stdinBlock {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 0.5rem 0.75rem;
+    border-top: 1px solid #1e1e1e;
+    background: #0f0f0f;
+}
+
+.stdinLabel {
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: #444;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.stdinArea {
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 6px;
+    padding: 0.5rem 0.6rem;
+    color: #aaa;
+    font-size: 0.8rem;
+    font-family: "JetBrains Mono", monospace;
+    resize: none;
+    outline: none;
+
+    &:focus { border-color: #2ecc71; }
+    &::placeholder { color: #333; }
+    &:disabled { opacity: 0.4; }
+}
+
+// ── Action bar ────────────────────────────────────────
+
+.actionBar {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.6rem 0.75rem;
+    border-top: 1px solid #1e1e1e;
+    background: #111;
+}
+
+.errorText {
+    font-size: 0.78rem;
+    color: #e74c3c;
+    flex: 1;
+}
+
+.loadingText {
+    font-size: 0.78rem;
+    color: #888;
+    font-style: italic;
+    flex: 1;
+}
+
+.actionBtns {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: auto;
+}
+
+.runBtn {
+    padding: 0.45rem 1rem;
+    background: #1e1e1e;
+    color: #aaa;
+    border: 1px solid #2a2a2a;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &:hover:not(:disabled) { border-color: #2ecc71; color: #2ecc71; }
+    &:disabled { opacity: 0.4; cursor: not-allowed; }
+}
+
+.submitBtn {
+    padding: 0.45rem 1rem;
+    background: #2ecc71;
+    color: #000;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+
+    &:hover:not(:disabled) { background: #27ae60; }
+    &:disabled { opacity: 0.4; cursor: not-allowed; }
+}

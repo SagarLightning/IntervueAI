@@ -40,3 +40,8 @@ export const finishInterviewSession = async (sessionId) => {
     const response = await api.post(`/api/interview-session/${sessionId}/finish`);
     return response.data;
 };
+
+export const getInterviewSessions = async () => {
+    const response = await api.get("/api/interview-session");
+    return response.data;
+};

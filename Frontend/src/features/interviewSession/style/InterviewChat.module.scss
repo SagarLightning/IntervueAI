@@ -1,0 +1,193 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: #111;
+    border-right: 1px solid #1e1e1e;
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid #1e1e1e;
+    background: #0f0f0f;
+}
+
+.headerIcon { font-size: 1.1rem; }
+
+.headerTitle {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #aaa;
+    letter-spacing: 0.03em;
+}
+
+.messageList {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+// ── Bubbles ───────────────────────────────────────────
+
+.bubble {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    max-width: 92%;
+    animation: fadeUp 0.2s ease;
+}
+
+.interviewer {
+    align-self: flex-start;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 2px 12px 12px 12px;
+    padding: 0.85rem 1rem;
+}
+
+.candidate {
+    align-self: flex-end;
+    background: #1b2a1f;
+    border: 1px solid #2ecc7130;
+    border-radius: 12px 2px 12px 12px;
+    padding: 0.85rem 1rem;
+}
+
+.system {
+    background: transparent !important;
+    border: none !important;
+    padding: 0.4rem 0 !important;
+
+    .text {
+        font-style: italic;
+        color: #666;
+        font-size: 0.85rem;
+    }
+}
+
+.evaluation {
+    background: #161620 !important;
+    border-color: #6c63ff25 !important;
+
+    .text {
+        color: #9e9aff;
+        font-size: 0.88rem;
+    }
+}
+
+.role {
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: #2ecc71;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.roleCandidate {
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    text-align: right;
+}
+
+.text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #ccc;
+    margin: 0;
+}
+
+// ── Evaluating dots ───────────────────────────────────
+
+.evaluating {
+    flex-direction: row !important;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.dots {
+    display: flex;
+    gap: 3px;
+
+    span {
+        width: 6px;
+        height: 6px;
+        background: #2ecc71;
+        border-radius: 50%;
+        animation: pulse 1.2s ease-in-out infinite;
+
+        &:nth-child(2) { animation-delay: 0.2s; }
+        &:nth-child(3) { animation-delay: 0.4s; }
+    }
+}
+
+.evalText {
+    font-size: 0.82rem;
+    color: #666;
+    font-style: italic;
+    margin: 0;
+}
+
+// ── Input area ────────────────────────────────────────
+
+.inputArea {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.75rem;
+    border-top: 1px solid #1e1e1e;
+    background: #0f0f0f;
+}
+
+.input {
+    flex: 1;
+    background: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 8px;
+    padding: 0.6rem 0.75rem;
+    color: #ddd;
+    font-size: 0.85rem;
+    font-family: inherit;
+    resize: none;
+    outline: none;
+    line-height: 1.4;
+
+    &:focus { border-color: #2ecc71; }
+    &::placeholder { color: #444; }
+    &:disabled { opacity: 0.4; }
+}
+
+.sendBtn {
+    padding: 0.6rem 1rem;
+    background: #2ecc71;
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+    align-self: flex-end;
+
+    &:hover:not(:disabled) { background: #27ae60; }
+    &:disabled { opacity: 0.35; cursor: not-allowed; }
+}
+
+// ── Animations ────────────────────────────────────────
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
+    40% { opacity: 1; transform: scale(1.1); }
+}

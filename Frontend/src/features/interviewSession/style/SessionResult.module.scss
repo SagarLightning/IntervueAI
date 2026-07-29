@@ -78,21 +78,19 @@
     height: 100%;
     border-radius: 999px;
     transition: width 0.8s ease;
+    background-color: currentColor;
 }
 
 .scoreHigh {
     color: #2ecc71;
-    background: #2ecc71;
 }
 
 .scoreMid {
     color: #f39c12;
-    background: #f39c12;
 }
 
 .scoreLow {
     color: #e74c3c;
-    background: #e74c3c;
 }
 
 // ── Sections ──────────────────────────────────────────

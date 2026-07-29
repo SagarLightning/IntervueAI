@@ -5,6 +5,7 @@ import {
   submitInterviewAnswer,
   moveToNextRound,
   finishInterviewSession,
+  getInterviewSessions,
 } from "../services/interviewSession.api";
 
 export function useInterviewSession() {
@@ -71,7 +72,7 @@ export function useInterviewSession() {
 
   async function fetchSessions() {
     return execute(async () => {
-      const data = await getInterviewSession();
+      const data = await getInterviewSessions();
 
       setSessions(data);
 
