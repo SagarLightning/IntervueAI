@@ -1,14 +1,22 @@
 import { createBrowserRouter, Navigate } from 'react-router';
-import Register from './features/auth/pages/register';
-import Login from './features/auth/pages/login';
+import { lazy, Suspense } from 'react';
 import ErrorPage from './components/ErrorPage';
 import Protected from "./features/auth/components/Protected.jsx";
-import Home from './features/interview/pages/Home';
-import Interview from "./features/interview/pages/Interview";
-import SessionStart from "./features/interviewSession/pages/SessionStart";
-import InterviewRoom from "./features/interviewSession/pages/InterviewRoom";
-import SessionResult from "./features/interviewSession/pages/SessionResult";
-import CodingRound from "./features/interviewSession/pages/CodingRound";
+
+const Register = lazy(() => import('./features/auth/pages/register'));
+const Login = lazy(() => import('./features/auth/pages/login'));
+const Home = lazy(() => import('./features/interview/pages/Home'));
+const Interview = lazy(() => import('./features/interview/pages/Interview'));
+const SessionStart = lazy(() => import('./features/interviewSession/pages/SessionStart'));
+const InterviewRoom = lazy(() => import('./features/interviewSession/pages/InterviewRoom'));
+const SessionResult = lazy(() => import('./features/interviewSession/pages/SessionResult'));
+const CodingRound = lazy(() => import('./features/interviewSession/pages/CodingRound'));
+
+const SuspenseWrapper = ({ children }) => (
+    <Suspense fallback={<div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', fontSize: '1.5rem', color: '#666' }}>Loading...</div>}>
+        {children}
+    </Suspense>
+);
 
 
 
@@ -23,35 +31,35 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'register',
-                element: <Register />
+                element: <SuspenseWrapper><Register /></SuspenseWrapper>
             },
             {
                 path: 'login',
-                element: <Login />
+                element: <SuspenseWrapper><Login /></SuspenseWrapper>
             },
             {
                 path: 'home',
-                element: <Protected><Home /></Protected>
+                element: <Protected><SuspenseWrapper><Home /></SuspenseWrapper></Protected>
             },
             {
                 path: 'interview/:interviewId',
-                element: <Protected><Interview /></Protected>
+                element: <Protected><SuspenseWrapper><Interview /></SuspenseWrapper></Protected>
             },
             {
                 path: 'interview-session/start',
-                element: <Protected><SessionStart /></Protected>
+                element: <Protected><SuspenseWrapper><SessionStart /></SuspenseWrapper></Protected>
             },
             {
                 path: 'interview-session/:sessionId',
-                element: <Protected><InterviewRoom /></Protected>
+                element: <Protected><SuspenseWrapper><InterviewRoom /></SuspenseWrapper></Protected>
             },
             {
                 path: "interview-session/:sessionId/result",
-                element: <Protected><SessionResult /></Protected>
+                element: <Protected><SuspenseWrapper><SessionResult /></SuspenseWrapper></Protected>
             },
             {
                 path: "interview-session/:sessionId/coding",
-                element: <Protected><CodingRound /></Protected>
+                element: <Protected><SuspenseWrapper><CodingRound /></SuspenseWrapper></Protected>
             }
         ]
     }

@@ -1,11 +1,13 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const cors = require('cors');
+const compression = require('compression');
 const interviewSessionRoutes = require("./routes/interviewSession.routes.js");
 const codingRoutes = require("./routes/coding.routes.js");
 
 const app = express();
 
+app.use(compression());
 app.use(express.json({ type: 'application/json' }));
 app.use(cookieParser());
 app.use(cors({
