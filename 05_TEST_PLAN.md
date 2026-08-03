@@ -1,6 +1,8 @@
 # Test Plan
 
-## Resume Flow
+## Version 1 (V1) Tests
+
+### Resume Flow
 
 - Upload valid PDF
 - Parse successfully
@@ -11,7 +13,9 @@ Pass criteria:
 
 Report created successfully.
 
-## Interview Session
+## Version 2 (V2) Tests
+
+### Interview Session
 
 - Create session
 - First question generated
@@ -21,7 +25,7 @@ Pass criteria:
 
 Session persists.
 
-## Answer Flow
+### Answer Flow
 
 - Submit answer
 - AI evaluates
@@ -31,7 +35,7 @@ Pass criteria:
 
 Context maintained.
 
-## Coding Round
+### Coding Round
 
 - Code executes
 - Test cases run
@@ -41,7 +45,7 @@ Pass criteria:
 
 Judge0 works correctly.
 
-## Final Report
+### Final Report
 
 - Scores generated
 - Weaknesses listed

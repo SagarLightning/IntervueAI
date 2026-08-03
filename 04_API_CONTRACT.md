@@ -1,6 +1,6 @@
 # API Contract
 
-## Existing
+## Version 1 (V1) APIs
 
 - `POST /auth/register`
 - `POST /auth/login`
@@ -8,7 +8,7 @@
 - `GET /reports`
 - `POST /resume/generate`
 
-## New
+## Version 2 (V2) APIs
 
 ### Create Interview Session
 

@@ -20,37 +20,31 @@ The system behaves like a human interviewer.
 
 ## Core Goals
 
-- Personalized interviews based on resume + JD
-- Multi-round interview simulation
-- Coding round support
-- Behavioral round support
-- Adaptive questioning
-- AI-generated feedback
-- ATS resume optimization
-- Improvement roadmap
+- **Version 1 (V1):** Resume Analysis & Generation. Users provide Job Description (JD), Resume, and a self-declaration. The system calculates a qualification percentage and generates an optimized ATS-friendly resume.
+- **Version 2 (V2):** AI Mock Interview. Using the report generated in V1, users can conduct a realistic, multi-round AI mock interview with adaptive questioning and a coding round.
 
 ## In Scope
 
-### Existing Features
+### Version 1 (V1) Features
 
 - Auth
-- Resume upload
-- Resume parsing
-- JD matching
-- ATS optimization
+- Resume, JD, and Self-description input
+- Resume parsing and analysis
+- Qualification matching percentage calculation
+- ATS optimized resume generation
 - Report history
 
-### New Features
+### Version 2 (V2) Features
 
-- Interview session engine
+- Interview session engine (uses V1 report)
 - Resume-aware questioning
 - Follow-up questioning
 - Coding round
 - Difficulty adaptation
 - Scoring engine
-- Final report
+- Final interview report
 
-## Out of Scope (V1)
+## Out of Scope
 
 - Video interviews
 - Real-time voice

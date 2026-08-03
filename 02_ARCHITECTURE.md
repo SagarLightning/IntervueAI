@@ -27,16 +27,28 @@
 
 - JWT + Cookies
 
-## Main Flow
+## Main Flow (Version 1)
 
 ```text
 User
 ↓
-Upload Resume
+Provide Resume, JD, Self Description
 ↓
-Resume Parser
+Resume Parser & Gemini Analyzer
 ↓
-Gemini Analyzer
+Qualification Percentage Calculation
+↓
+ATS Resume Generator
+↓
+MongoDB (Save Report)
+```
+
+## Main Flow (Version 2)
+
+```text
+User
+↓
+Load V1 Report
 ↓
 Interview Planner
 ↓
@@ -50,7 +62,7 @@ Follow-up Generator
 ↓
 Score Generator
 ↓
-MongoDB
+MongoDB (Save Session)
 ```
 
 ## Coding Round Flow

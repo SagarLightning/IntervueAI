@@ -1,6 +1,8 @@
 # Database Schema
 
-## User
+## Core Schemas
+
+### User
 
 - `_id`
 - `name`
@@ -8,7 +10,9 @@
 - `password`
 - `createdAt`
 
-## Report
+## Version 1 (V1) Schemas
+
+### Report
 
 - `_id`
 - `userId` ref `User`
@@ -23,7 +27,9 @@
 - `atsResumePdf`
 - `createdAt`
 
-## InterviewSession
+## Version 2 (V2) Schemas
+
+### InterviewSession
 
 - `_id`
 - `userId` ref `User`
@@ -40,7 +46,7 @@
 - `finalFeedback`
 - `createdAt`
 
-## TranscriptItem
+### TranscriptItem
 
 - `question`
 - `answer`
@@ -49,7 +55,7 @@
 - `followUpQuestion`
 - `timestamp`
 
-## Score Object
+### Score Object
 
 - `communication`
 - `technicalDepth`
@@ -59,7 +65,7 @@
 - `behavioral`
 - `totalScore`
 
-## CodingSubmission
+### CodingSubmission
 
 - `_id`
 - `sessionId` ref `InterviewSession`
